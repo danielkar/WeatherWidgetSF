@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Weather" icon-name="standard:events">
+        <template if:true={areDetailsVisible}>
+            <div class="container">
+                <div class="widget">
+                <div class="details">
+                    <div class="temperature">{temperature}</div>
+                    <div class="summary">
+                    <p class="summaryText">{cloud}</p>
+                    </div>
+                    <div class="wind">Wind: {speed}</div>
+                </div>
+                <div class="pictoBackdrop"></div>
+                <div class="pictoFrame"></div>
+                <div class="pictoCloudBig"></div>
+                <div class="pictoCloudFill"></div>
+                <div class="pictoCloudSmall"></div>
+                <div class="iconCloudBig"></div>
+                <div class="iconCloudFill"></div>
+                <div class="iconCloudSmall"></div>
+                </div>
+            </div>
+        </template>
+        <template if:false={areDetailsVisible}>
+            <div class="slds-align_absolute-center">Please set the correct Address to get the weather</div>
+        </template>
+    </lightning-card>
+</template>
