@@ -1,0 +1,53 @@
+<aura:component controller="WeatherController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <!--aura handler with waiting and donewaiting events-->
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!--component attributs -->
+    <aura:attribute name="spinner" type="boolean" default="FALSE"/>
+    <aura:attribute name="temp" type="String"/>
+    <aura:attribute name="speed" type="String"/>
+    <aura:attribute name="cloud" type="String"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="areDetailsVisible" type="Boolean"/>
+
+    <!--loading spinner start-->
+    <aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!-- Loading spinner end-->  
+
+    <lightning:card iconName="standard:events" title="Weather Aura Component">
+        <aura:if isTrue="{!v.areDetailsVisible}">
+            <div class="container">
+                <div class="widget">
+                <div class="details">
+                    <div class="temperature">{!v.temp}</div>
+                    <div class="summary">
+                    <p class="summaryText">{!v.cloud}</p>
+                    </div>
+                    <div class="wind">Wind: {!v.speed}</div>
+                </div>
+                <div class="pictoBackdrop"></div>
+                <div class="pictoFrame"></div>
+                <div class="pictoCloudBig"></div>
+                <div class="pictoCloudFill"></div>
+                <div class="pictoCloudSmall"></div>
+                <div class="iconCloudBig"></div>
+                <div class="iconCloudFill"></div>
+                <div class="iconCloudSmall"></div>
+                </div>
+            </div>
+            <aura:set attribute="else">
+                <div class="slds-align_absolute-center">Please set the correct Address to get the weather</div>
+            </aura:set>
+        </aura:if>
+    </lightning:card>
+</aura:component>

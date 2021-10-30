@@ -19,6 +19,9 @@ public class WeatherController {
             }
             else if(city != null && stateCode != null && countryCode != null) {
                 weather = getCityStateCountryWeather(city, stateCode, countryCode);
+                if(weather == null && city != null) {
+                    weather = getCityWeather(city);
+                }
             }
             else if(city != null) {
                 weather = getCityWeather(city);

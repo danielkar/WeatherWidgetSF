@@ -1,5 +1,11 @@
 <template>
-    <lightning-card title="Weather" icon-name="standard:events">
+    <div class="spinner">
+        <template if:true={isLoading}>
+             <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+             </lightning-spinner>
+        </template>
+    </div>
+    <lightning-card title="Weather LWC" icon-name="standard:events">
         <template if:true={areDetailsVisible}>
             <div class="container">
                 <div class="widget">
